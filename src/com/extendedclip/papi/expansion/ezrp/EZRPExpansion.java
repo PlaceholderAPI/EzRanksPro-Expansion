@@ -73,21 +73,19 @@ public class EZRPExpansion extends PlaceholderExpansion {
 
 			r = Rankup.getRankup(rank);
 
-			if (r == null) {
+			if (r == null)
 				return null;
-			}
 
 			String rRank = r.getRankup();
 
 			Rankup to = Rankup.getRankup(rRank);
 
-			if (to != null) {
-				return r.getPrefix();
-			}
+			if (to != null)
+				return to.getPrefix();
 
-			if (Rankup.isLastRank(rRank)) {
+			if (Rankup.isLastRank(rRank))
 				return Rankup.getLastRank().getPrefix();
-			}
+
 			return null;
 		}
 
@@ -170,7 +168,7 @@ public class EZRPExpansion extends PlaceholderExpansion {
 
 					cost = CostHandler.getDiscount(p, cost);
 				}
-				return String.valueOf(EcoUtil.getDifference(balance, cost));
+				return String.valueOf((long) EcoUtil.getDifference(balance, cost));
 			case "difference_formatted":
 
 				if (r != null) {
@@ -220,7 +218,7 @@ public class EZRPExpansion extends PlaceholderExpansion {
 
 				return EcoUtil.getProgressExact(balance, cost);
 			case "balance":
-				return String.valueOf(balance);
+				return String.valueOf((long) balance);
 			case "balance_formatted":
 				return EcoUtil.fixMoney(balance);
 			case "rankprefix":
@@ -243,14 +241,12 @@ public class EZRPExpansion extends PlaceholderExpansion {
 			case "rankupprefix":
 			case "rankup_prefix":
 			case "nextrank_prefix":
-				if (r == null) {
+				if (r == null)
 					return "";
-				}
 
-				if (Rankup.getRankup(r.getRankup()) == null) {
+				if (Rankup.getRankup(r.getRankup()) == null)
 					return Rankup.getLastRank() != null && Rankup.getLastRank().getPrefix() != null ?
 							Rankup.getLastRank().getPrefix() : "";
-				}
 
 				return Rankup.getRankup(r.getRankup()).getPrefix() != null ?
 						Rankup.getRankup(r.getRankup()).getPrefix() : "";
