@@ -1,6 +1,6 @@
 /*
  *
- * Player-Expansion
+ * EzRanksPro-Expansion
  * Copyright (C) 2020 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
