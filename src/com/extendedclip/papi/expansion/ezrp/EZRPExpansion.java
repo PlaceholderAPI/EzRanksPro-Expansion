@@ -56,7 +56,7 @@ public class EZRPExpansion extends PlaceholderExpansion {
 
 	@Override
 	public String getVersion() {
-		return "1.2.0";
+		return "1.2.1";
 	}
 
 	@Override
