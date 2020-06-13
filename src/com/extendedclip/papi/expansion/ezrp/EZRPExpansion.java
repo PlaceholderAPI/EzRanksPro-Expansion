@@ -68,16 +68,38 @@ public class EZRPExpansion extends PlaceholderExpansion {
 			rank = identifier.replace("rank_cost_formatted_", "");
 
 			r = Rankup.getRankup(rank);
+			if (r == null) {
+				return null;
+			}
 
-			return r != null ? EcoUtil.fixMoney(r.getCost()) : null;
+			double cost = r.getCost();
+
+			if (player != null && player.isOnline()) {
+				Player onlinePlayer = player.getPlayer();
+				cost = CostHandler.getMultiplier(onlinePlayer, cost);
+				cost = CostHandler.getDiscount(onlinePlayer, cost);
+			}
+
+			return EcoUtil.fixMoney(cost);
 		}
 
 		if (identifier.startsWith("rank_cost_")) {
 			rank = identifier.replace("rank_cost_", "");
 
 			r = Rankup.getRankup(rank);
+			if (r == null) {
+				return null;
+			}
 
-			return r != null ? String.valueOf(r.getCost()) : null;
+			double cost = r.getCost();
+
+			if (player != null && player.isOnline()) {
+				Player onlinePlayer = player.getPlayer();
+				cost = CostHandler.getMultiplier(onlinePlayer, cost);
+				cost = CostHandler.getDiscount(onlinePlayer, cost);
+			}
+
+			return String.valueOf(cost);
 		}
 
 		if (identifier.startsWith("rank_prefix_")) {
